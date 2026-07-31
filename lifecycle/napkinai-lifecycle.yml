@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: searched
+source: https://api.napkin.ai/docs/changelog
+versioning:
+  scheme: uri-path
+  current: v1
+  api_version: 1.1.16
+  docs: https://api.napkin.ai/
+  notes: >-
+    The API is in developer preview; endpoints may change. A semantic
+    application version (1.1.x) is tracked in the changelog; the URL base path
+    is /v1.
+stability: developer-preview
+changelog: https://api.napkin.ai/docs/changelog
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: >-
+    No formal deprecation policy or RFC 8594 Sunset/Deprecation header support is
+    documented. Generation results are ephemeral instead: both request status and
+    generated-file URLs expire 30 minutes after generation.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+resource_expiry:
+  window_minutes: 30
+  applies_to: [visual-request-status, generated-file-urls]
+deprecated_operations: []

@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/napkinai-openapi.yml
+standards:
+- id: oauth2
+  conforms: true
+  evidence: >-
+    OAuth 2.0 authorization code flow documented (beta) with /v1/oauth/authorize,
+    /v1/oauth/token, /v1/oauth/revoke and user/generation scopes.
+- id: bearer-token-auth
+  conforms: true
+  evidence: HTTP Bearer authentication required on all API endpoints.
+- id: oidc
+  conforms: false
+  evidence: No /.well-known/openid-configuration published.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use plain HTTP status codes plus an application-level error {code,message} object, not application/problem+json.
+- id: rfc9116-security-txt
+  conforms: true
+  evidence: /.well-known/security.txt published on both www and api hosts.
+- id: async-job-polling
+  conforms: true
+  evidence: Create returns a request id (201); status is polled until completed/failed; files then downloaded.
+compliance_program: null

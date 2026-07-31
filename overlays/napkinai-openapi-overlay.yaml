@@ -1,0 +1,36 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Napkin AI API
+  version: 1.0.0
+# generated: '2026-07-20'
+# method: generated
+# source: openapi/napkinai-openapi.yml
+extends: openapi/napkinai-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-rating: 3
+      x-apievangelist-note: >-
+        Developer-preview API captured by the API Evangelist enrichment pipeline
+        from published documentation; no provider-published OpenAPI was found.
+      x-async-pattern: create-poll-download
+      x-resource-expiry-minutes: 30
+  - target: $.paths./visual.post
+    update:
+      x-idempotency-supported: false
+      x-agentic-access:
+        action-class: acting
+        consequence: write
+  - target: $.paths./visual/{request-id}/status.get
+    update:
+      x-agentic-access:
+        action-class: connected
+        consequence: read
+  - target: $.paths./visual/{request-id}/file/{file-id}.get
+    update:
+      x-agentic-access:
+        action-class: connected
+        consequence: read
+      x-download-note: >-
+        Download within the 30-minute expiry window; persist bytes and self-host
+        rather than hot-linking the expiring Napkin URLs.

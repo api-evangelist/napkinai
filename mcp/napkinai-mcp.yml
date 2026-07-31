@@ -1,0 +1,31 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/napkinai-openapi.yml
+summary: >-
+  Napkin AI publishes no official hosted or remote MCP server as of this pass.
+  The tools below are a candidate surface derived one-to-one from the documented
+  developer-preview REST operations, for use as a starting point when forging an
+  MCP server over the Napkin AI API. A community (third-party, unofficial) MCP
+  server "napkin-ai-mcp" exists on npm (github.com/LouisChanCLY/napkin-ai-mcp) and
+  is not endorsed here.
+server:
+  name: napkin-ai
+  transport: http
+  url: null
+tools:
+- name: create_visual_request
+  description: Create a new asynchronous visual generation request from text content.
+  source_operation: openapi/napkinai-openapi.yml#createVisualRequest
+- name: get_visual_request_status
+  description: Poll the status of a visual request; returns generated_files when completed.
+  source_operation: openapi/napkinai-openapi.yml#getVisualRequestStatus
+- name: download_visual_file
+  description: Download a specific generated file (PNG/SVG/PDF/PPT) from a completed request.
+  source_operation: openapi/napkinai-openapi.yml#downloadVisualFile
+community_servers:
+- name: napkin-ai-mcp
+  official: false
+  registry: npm
+  url: https://www.npmjs.com/package/napkin-ai-mcp
+  source: https://github.com/LouisChanCLY/napkin-ai-mcp

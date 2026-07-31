@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: searched
+source: https://www.napkin.ai/.well-known/security.txt
+hosts:
+- host: https://www.napkin.ai
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: napkinai-security.txt
+  - path: /.well-known/openid-configuration
+    status: 404
+- host: https://api.napkin.ai
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: napkinai-security.txt
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+notes: >-
+  security.txt (RFC 9116) is served on both the marketing host and the API host,
+  pointing to the Napkin vulnerability disclosure program at https://vdp.napkin.ai.
+  No OIDC discovery or OAuth authorization-server metadata document is published;
+  OAuth 2.0 endpoints are documented at https://api.napkin.ai/oauth-user-authentication.

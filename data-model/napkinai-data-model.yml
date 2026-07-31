@@ -1,0 +1,35 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/napkinai-openapi.yml
+entities:
+- name: VisualRequest
+  description: An asynchronous text-to-visual generation job.
+  identifier: request_id
+  states: [pending, completed, failed]
+  fields: [content, language, style_id, sort_strategy, number_of_visuals, status, error]
+- name: GeneratedFile
+  description: A single rendered output file produced by a completed VisualRequest.
+  identifier: file_id
+  fields: [file_id, url, content_type]
+  formats: [PNG, SVG, PDF, PPT]
+- name: VisualError
+  description: Error object attached to a failed VisualRequest.
+  fields: [code, message]
+- name: Style
+  description: A visual style applied to generation (see the Styles reference).
+  reference: https://api.napkin.ai/docs/styles
+relationships:
+- from: VisualRequest
+  to: GeneratedFile
+  type: has_many
+  via: generated_files
+  detail: A completed request exposes its outputs in the generated_files array.
+- from: VisualRequest
+  to: VisualError
+  type: has_one
+  via: error
+  detail: Present only when the request failed; generated_files is then empty.
+- from: VisualRequest
+  to: Style
+  type: belongs_to
+  via: style_id

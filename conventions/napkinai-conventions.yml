@@ -1,0 +1,40 @@
+generated: '2026-07-20'
+method: searched
+source: https://api.napkin.ai/
+authentication:
+  style: http-bearer
+  detail: >-
+    Bearer token required on all endpoints (Napkin account API token). OAuth 2.0
+    authorization code flow (beta) also supported with user/generation scopes.
+  ref: authentication/napkinai-authentication.yml
+async_pattern:
+  style: create-poll-download
+  detail: >-
+    POST /v1/visual returns a request id; poll GET /v1/visual/{request-id}/status
+    until status is completed or failed; then download each file listed in
+    generated_files. Requests are processed asynchronously.
+resource_expiry:
+  window_minutes: 30
+  detail: Both request status and generated-file download URLs expire 30 minutes after generation.
+idempotency:
+  supported: false
+  detail: No idempotency-key header or parameter is documented.
+pagination:
+  supported: false
+  detail: Endpoints return single resources; no list/pagination surface documented.
+versioning:
+  style: uri-path
+  current: v1
+  ref: lifecycle/napkinai-lifecycle.yml
+error_handling:
+  transport: http-status-codes
+  application_error: >-
+    Failed requests carry an error {code,message} object on the status response;
+    when present, generated_files is empty. Warning codes may accompany partial results.
+  ref: errors/napkinai-problem-types.yml
+rate_limiting:
+  signaled: true
+  detail: A 429 (rate limit exceeded) response is documented for the create endpoint.
+media_types:
+  request: application/json
+  file_outputs: [image/png, image/svg+xml, application/pdf, application/vnd.openxmlformats-officedocument.presentationml.presentation]

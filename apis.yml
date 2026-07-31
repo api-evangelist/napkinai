@@ -1,26 +1,142 @@
 aid: napkinai
 name: Napkin.AI
-description: 'Napkin.AI is a company surfaced as a portfolio company of accel and added to the API Evangelist
-  network as a stub for enrichment. Sector: ai. This profile is a lead awaiting the enrichment pipeline.'
+description: >-
+  Napkin AI turns typed or pasted text into editable visuals — diagrams, charts,
+  mind maps, icons, and infographics — and into full presentations, with no
+  prompting or design skill required. Two products share the same text-to-visual
+  engine: Napkin Visuals (standalone diagrams and graphics, exportable to PPT,
+  PNG, PDF, or SVG) and Napkin Slides (beta AI presentation agent that builds a
+  tailored, fully editable deck). A developer-preview REST API also generates
+  visuals programmatically: submit text to POST /v1/visual, poll the request
+  status, then download the generated PNG/SVG/PPT files. Authentication is by
+  account API token (HTTP Bearer) or OAuth 2.0 (beta) with user and generation
+  scopes. Napkin AI is backed by Accel.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.napkin.ai/assets/og-image-v5.png?v=2
 url: https://raw.githubusercontent.com/api-evangelist/napkinai/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - accel
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: has-developer-api
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
 - Ai
-apis: []
+- Visualization
+- Diagrams
+- Charts
+- Infographics
+- Presentations
+- Content Generation
+- Design
+- Developer API
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 21
+  pass: local-v1
+apis:
+- aid: napkinai:napkinai-visuals-api
+  name: Napkin.AI Visuals API
+  description: Programmatic visual content generation.
+  humanURL: https://api.napkin.ai/
+  baseURL: https://api.napkin.ai/v1
+  tags:
+  - Visuals
+  properties:
+  - type: OpenAPI
+    url: openapi/napkinai-visuals-api-openapi.yml
+  - type: Documentation
+    url: https://api.napkin.ai/
+  - type: APIReference
+    url: https://api.napkin.ai/api/create-visual-request
+  - type: GettingStarted
+    url: https://api.napkin.ai/api/napkin-api-documentation
+  - type: Authentication
+    url: https://api.napkin.ai/oauth-user-authentication
+  - type: ChangeLog
+    url: https://api.napkin.ai/docs/changelog
 common:
+- type: VulnerabilityDisclosure
+  url: security/napkinai-vulnerability-disclosure.yml
+- type: Security
+  url: https://vdp.napkin.ai
+- type: DomainSecurity
+  url: security/napkinai-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/napkinai-agentic-access.yml
+- type: OAuthScopes
+  url: scopes/napkinai-scopes.yml
+- type: Authentication
+  url: authentication/napkinai-authentication.yml
 - type: Website
   url: https://www.napkin.ai/
+- type: DeveloperPortal
+  url: https://api.napkin.ai/
+- type: Documentation
+  url: https://api.napkin.ai/
+- type: APIReference
+  url: https://api.napkin.ai/api/create-visual-request
+- type: GettingStarted
+  url: https://api.napkin.ai/api/napkin-api-documentation
+- type: OpenAPI
+  url: openapi/napkinai-openapi.yml
+- type: Pricing
+  url: https://www.napkin.ai/pricing/
+- type: SignUp
+  url: https://app.napkin.ai/signin
+- type: TermsOfService
+  url: https://www.napkin.ai/terms-conditions/
+- type: PrivacyPolicy
+  url: https://www.napkin.ai/privacy-policy/
+- type: Support
+  url: https://help.napkin.ai/en/
+- type: Blog
+  url: https://www.napkin.ai/blog/
+- type: LLMsTxt
+  url: llms/napkinai-llms.txt
+- type: WellKnown
+  url: well-known/napkinai-well-known.yml
+- type: SecurityTxt
+  url: well-known/napkinai-security.txt
+- type: MCPServer
+  url: mcp/napkinai-mcp.yml
+- type: Conformance
+  url: conformance/napkinai-conformance.yml
+- type: ErrorCatalog
+  url: errors/napkinai-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/napkinai-lifecycle.yml
+- type: Conventions
+  url: conventions/napkinai-conventions.yml
+- type: ChangeLog
+  url: changelog/napkinai-changelog.yml
+- type: DataModel
+  url: data-model/napkinai-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Overlay
+  url: overlays/napkinai-openapi-overlay.yaml
+- type: Arazzo
+  name: Generate a visual from text with Napkin AI
+  url: arazzo/napkinai-generate-visual.yml

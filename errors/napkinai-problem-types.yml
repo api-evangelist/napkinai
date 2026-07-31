@@ -1,0 +1,66 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/napkinai-openapi.yml
+docs: https://api.napkin.ai/docs/changelog
+format: http-status
+envelope: >-
+  On a failed visual request the status response carries an `error` object with
+  `code` and `message`; when `error` is present the `generated_files` array is
+  empty. Warning codes may also be returned alongside partial results.
+problems:
+- status: 400
+  title: Invalid request
+  detail: Invalid request data, request ID format, or file ID format.
+  source_operations:
+  - openapi/napkinai-openapi.yml#createVisualRequest
+  - openapi/napkinai-openapi.yml#getVisualRequestStatus
+  - openapi/napkinai-openapi.yml#downloadVisualFile
+- status: 401
+  title: Authentication required or invalid token
+  detail: Missing, invalid, or expired bearer token. As of v1.1.2 an expired token returns 401 (previously 403).
+  source_operations:
+  - openapi/napkinai-openapi.yml#createVisualRequest
+  - openapi/napkinai-openapi.yml#getVisualRequestStatus
+  - openapi/napkinai-openapi.yml#downloadVisualFile
+- status: 403
+  title: Access denied
+  detail: The request belongs to another user.
+  source_operations:
+  - openapi/napkinai-openapi.yml#getVisualRequestStatus
+  - openapi/napkinai-openapi.yml#downloadVisualFile
+- status: 404
+  title: Not found
+  detail: Request or file not found.
+  source_operations:
+  - openapi/napkinai-openapi.yml#getVisualRequestStatus
+  - openapi/napkinai-openapi.yml#downloadVisualFile
+- status: 410
+  title: Expired
+  detail: The request has expired and is no longer available. Status and file URLs expire 30 minutes after generation.
+  source_operations:
+  - openapi/napkinai-openapi.yml#getVisualRequestStatus
+  - openapi/napkinai-openapi.yml#downloadVisualFile
+- status: 429
+  title: Rate limit exceeded
+  detail: Too many requests.
+  source_operations:
+  - openapi/napkinai-openapi.yml#createVisualRequest
+- status: 500
+  title: Internal server error
+  detail: An unexpected error occurred processing the request.
+  source_operations:
+  - openapi/napkinai-openapi.yml#createVisualRequest
+  - openapi/napkinai-openapi.yml#getVisualRequestStatus
+  - openapi/napkinai-openapi.yml#downloadVisualFile
+error_codes:
+- code: no_credits
+  meaning: The user does not have enough credits to complete the request.
+  action: Purchase more credits or wait for credits to refresh.
+- code: no_visuals
+  meaning: The system could not generate any visuals for the given content.
+  action: Try simplifying the content or using different parameters.
+warning_codes:
+- code: some_visuals_failed_orientation_control
+  meaning: Some visuals failed orientation control and were returned anyway.
+- code: not_enough_visuals
+  meaning: The system could not generate the requested number of visuals; fewer than requested are returned.

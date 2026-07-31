@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/napkinai-openapi.yml
+summary:
+  types:
+  - http
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Bearer token authentication required for all endpoints. Use a Napkin AI account
+    API token in the Authorization header.
+  sources:
+  - openapi/napkinai-openapi.yml
+- name: oauth2
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://api.napkin.ai/v1/oauth/authorize
+    tokenUrl: https://api.napkin.ai/v1/oauth/token
+    scopes: 2
+  description: OAuth 2.0 authorization code flow (beta). Your application must be approved by
+    the Napkin AI team to obtain client credentials.
+  sources:
+  - openapi/napkinai-openapi.yml

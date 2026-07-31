@@ -1,0 +1,7 @@
+generated: '2026-07-20'
+method: generated
+skills:
+- file: napkinai-generate-visual.md
+  name: Generate a visual from text with Napkin AI
+  api: openapi/napkinai-openapi.yml
+  operations: [createVisualRequest, getVisualRequestStatus, downloadVisualFile]

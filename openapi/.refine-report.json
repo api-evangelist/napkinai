@@ -1,0 +1,14 @@
+{
+  "provider": "napkinai",
+  "sources": [
+    "napkinai-visuals-api-openapi.yml"
+  ],
+  "outputs": [
+    "napkinai-visuals-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
