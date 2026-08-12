@@ -100,7 +100,7 @@ common:
 - type: GettingStarted
   url: https://api.napkin.ai/api/napkin-api-documentation
 - type: OpenAPI
-  url: openapi/napkinai-openapi.yml
+  url: openapi/_original/napkinai-openapi.yml
 - type: Pricing
   url: https://www.napkin.ai/pricing/
 - type: SignUp
