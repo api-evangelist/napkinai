@@ -2,13 +2,11 @@ generated: '2026-07-20'
 method: derived
 status: candidate
 source: openapi/napkinai-openapi.yml
-summary: >-
-  Napkin AI publishes no official hosted or remote MCP server as of this pass.
-  The tools below are a candidate surface derived one-to-one from the documented
-  developer-preview REST operations, for use as a starting point when forging an
-  MCP server over the Napkin AI API. A community (third-party, unofficial) MCP
-  server "napkin-ai-mcp" exists on npm (github.com/LouisChanCLY/napkin-ai-mcp) and
-  is not endorsed here.
+summary: Napkin AI publishes no official hosted or remote MCP server as of this pass. The tools below
+  are a candidate surface derived one-to-one from the documented developer-preview REST operations, for
+  use as a starting point when forging an MCP server over the Napkin AI API. A community (third-party,
+  unofficial) MCP server "napkin-ai-mcp" exists on npm (github.com/LouisChanCLY/napkin-ai-mcp) and is
+  not endorsed here.
 server:
   name: napkin-ai
   transport: http
@@ -29,3 +27,9 @@ community_servers:
   registry: npm
   url: https://www.npmjs.com/package/napkin-ai-mcp
   source: https://github.com/LouisChanCLY/napkin-ai-mcp
+deployment:
+  mode: none
+  verified: derived
+  tools: 3
+  checked: '2026-08-12'
+  source: catalog MCP census
