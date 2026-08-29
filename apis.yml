@@ -11,6 +11,18 @@ description: >-
   status, then download the generated PNG/SVG/PPT files. Authentication is by
   account API token (HTTP Bearer) or OAuth 2.0 (beta) with user and generation
   scopes. Napkin AI is backed by Accel.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
