@@ -9,70 +9,70 @@ info:
 # method: derived
 # source: openapi/napkinai-openapi.yml
 sourceDescriptions:
-  - name: napkinaiApi
-    url: ../openapi/napkinai-openapi.yml
-    type: openapi
+- name: visualsApi
+  url: ../openapi/napkinai-visuals-api-openapi.yml
+  type: openapi
 workflows:
-  - workflowId: generateVisualFromText
-    summary: Create a visual request, poll to completion, and download the files.
-    description: >-
-      The Napkin AI visual API is asynchronous. Create a request with text
-      content, poll its status until completed or failed, then download each file
-      listed in generated_files. Status and file URLs expire 30 minutes after
-      generation.
-    inputs:
-      type: object
-      required: [content]
-      properties:
-        content:
-          type: string
-          description: The text Napkin turns into visuals.
-        language:
-          type: string
-          description: Optional but recommended language hint.
-        number_of_visuals:
-          type: integer
-          description: Number of visuals to request.
-    steps:
-      - stepId: createRequest
-        description: Create the asynchronous visual generation request.
-        operationId: createVisualRequest
-        requestBody:
-          contentType: application/json
-          payload:
-            content: $inputs.content
-            language: $inputs.language
-            number_of_visuals: $inputs.number_of_visuals
-        successCriteria:
-          - condition: $statusCode == 201
-        outputs:
-          request_id: $response.body#/request_id
-      - stepId: pollStatus
-        description: Poll the request status until it is completed.
-        operationId: getVisualRequestStatus
-        parameters:
-          - name: request-id
-            in: path
-            value: $steps.createRequest.outputs.request_id
-        successCriteria:
-          - condition: $statusCode == 200
-          - context: $response.body
-            condition: $.status == "completed"
-        outputs:
-          generated_files: $response.body#/generated_files
-      - stepId: downloadFile
-        description: >-
-          Download the first generated file. Repeat per entry in generated_files;
-          download within the 30-minute expiry window.
-        operationId: downloadVisualFile
-        parameters:
-          - name: request-id
-            in: path
-            value: $steps.createRequest.outputs.request_id
-          - name: file-id
-            in: path
-            value: $steps.pollStatus.outputs.generated_files[0].file_id
-        successCriteria:
-          - condition: $statusCode == 200
+- workflowId: generateVisualFromText
+  summary: Create a visual request, poll to completion, and download the files.
+  description: >-
+    The Napkin AI visual API is asynchronous. Create a request with text
+    content, poll its status until completed or failed, then download each file
+    listed in generated_files. Status and file URLs expire 30 minutes after
+    generation.
+  inputs:
+    type: object
+    required: [content]
+    properties:
+      content:
+        type: string
+        description: The text Napkin turns into visuals.
+      language:
+        type: string
+        description: Optional but recommended language hint.
+      number_of_visuals:
+        type: integer
+        description: Number of visuals to request.
+  steps:
+  - stepId: createRequest
+    description: Create the asynchronous visual generation request.
+    operationId: createVisualRequest
+    requestBody:
+      contentType: application/json
+      payload:
+        content: $inputs.content
+        language: $inputs.language
+        number_of_visuals: $inputs.number_of_visuals
+    successCriteria:
+    - condition: $statusCode == 201
     outputs:
-      generated_files: $steps.pollStatus.outputs.generated_files
+      request_id: $response.body#/request_id
+  - stepId: pollStatus
+    description: Poll the request status until it is completed.
+    operationId: getVisualRequestStatus
+    parameters:
+    - name: request-id
+      in: path
+      value: $steps.createRequest.outputs.request_id
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.status == "completed"
+    outputs:
+      generated_files: $response.body#/generated_files
+  - stepId: downloadFile
+    description: >-
+      Download the first generated file. Repeat per entry in generated_files;
+      download within the 30-minute expiry window.
+    operationId: downloadVisualFile
+    parameters:
+    - name: request-id
+      in: path
+      value: $steps.createRequest.outputs.request_id
+    - name: file-id
+      in: path
+      value: $steps.pollStatus.outputs.generated_files[0].file_id
+    successCriteria:
+    - condition: $statusCode == 200
+  outputs:
+    generated_files: $steps.pollStatus.outputs.generated_files
